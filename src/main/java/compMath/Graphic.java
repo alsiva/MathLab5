@@ -44,7 +44,7 @@ public class Graphic extends Application implements Runnable {
         for (Polynomial polynomial : polynomials) {
             drawPolynomial(polynomial);
         }
-        //drawDots(dotStorage);
+        drawDots(dotStorage);
 
         stage.setScene(scene);
         stage.show();
@@ -52,7 +52,7 @@ public class Graphic extends Application implements Runnable {
 
     private void drawPolynomial(Polynomial polynomial) {
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
-        series.setName("Default name");
+        series.setName(polynomial.getName());
 
         for (double point = dotStorage.getDot(0).getX(); point <= dotStorage.getDot(dotStorage.size() - 1).getX(); point += 0.01) {
             series.getData().add(new XYChart.Data<Number, Number>(point, polynomial.countValue(point)));

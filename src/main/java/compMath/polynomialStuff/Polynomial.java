@@ -4,5 +4,7 @@ public interface Polynomial {
 
     double countValue(double x);
 
+    String getName();
+
 
 }

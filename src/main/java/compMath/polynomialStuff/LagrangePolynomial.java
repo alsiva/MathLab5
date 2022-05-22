@@ -24,6 +24,11 @@ public class LagrangePolynomial implements Polynomial {
         return value;
     }
 
+    @Override
+    public String getName() {
+        return "Полиномиал Лагранжа";
+    }
+
     private double countTop(double x, int index) {
         double value = 1;
         for (int i = 0; i < dotStorage.size(); i++) {

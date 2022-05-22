@@ -27,8 +27,6 @@ public class Application {
             return;
         }
 
-
-
         LagrangePolynomial lagrangePolynomial = new LagrangePolynomial(dotStorage);
         NewtonPolynomial newtonPolynomial = new NewtonPolynomial(dotStorage);
 
@@ -40,6 +38,7 @@ public class Application {
 
         System.out.println("Value by lagrange polynomial: " + valueByLagrangePolynomial);
         System.out.println("Value by newton polynomial: " + valueByNewtonPolynomial);
+        newtonPolynomial.printDivDiffs();
 
         Graphic graphic = new Graphic();
         graphic.setData(dotStorage, List.of(lagrangePolynomial, newtonPolynomial));
