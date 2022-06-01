@@ -48,12 +48,13 @@ public class NewtonConst implements Polynomial{
 
         double result = dotStorage.getDot(i).getY();
         double tMult = (x - dotStorage.getDot(i).getX()) / (dotStorage.getDot(1).getX() - dotStorage.getDot(0).getX());
+        double t = tMult;
         double fact = 1;
         for (int k = 1; k < finDiffs.length; k++){
             fact *= k;
+            double value = (tMult *  finDiffs[i][k]) / fact;
             result += (tMult *  finDiffs[i][k]) / fact;
-            tMult *= (tMult - k);
-
+            tMult *= (t - k);
         }
 
         return result;
@@ -68,11 +69,12 @@ public class NewtonConst implements Polynomial{
 
         double result = dotStorage.getDot(n).getY();
         double tMult = (x - dotStorage.getDot(n).getX()) / (dotStorage.getDot(1).getX() - dotStorage.getDot(0).getX());
+        double t = tMult;
         double fact = 1;
         for (int k = 1; k < finDiffs.length; k++) {
             fact *= k;
             result += (tMult * finDiffs[n-k][k]) / fact;
-            tMult *= (tMult + k);
+            tMult *= (t + k);
         }
 
         return result;
