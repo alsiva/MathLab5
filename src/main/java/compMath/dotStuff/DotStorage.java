@@ -32,15 +32,14 @@ public class DotStorage {
 
     public double getMaxAbsY() {
         double maxAbs = 0;
-
         for (int i = 0; i < DOTS.size(); i++) {
             if (maxAbs < getDot(i).getY()) {
                 maxAbs = getDot(i).getY();
             }
         }
-
         return maxAbs;
-
     }
+
+
 
 }

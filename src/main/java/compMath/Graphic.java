@@ -54,7 +54,7 @@ public class Graphic extends Application implements Runnable {
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
         series.setName(polynomial.getName());
 
-        for (double point = dotStorage.getDot(0).getX(); point <= dotStorage.getDot(dotStorage.size() - 1).getX(); point += 0.01) {
+        for (double point = dotStorage.getDot(0).getX() + 0.001; point <= dotStorage.getDot(dotStorage.size() - 1).getX() - 0.001; point += 0.01) {
             series.getData().add(new XYChart.Data<Number, Number>(point, polynomial.countValue(point)));
         }
 

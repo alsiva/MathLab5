@@ -3,7 +3,7 @@ package compMath;
 import compMath.dotStuff.Dot;
 import compMath.dotStuff.DotStorage;
 import compMath.polynomialStuff.LagrangePolynomial;
-import compMath.polynomialStuff.NewtonPolynomial;
+import compMath.polynomialStuff.NewtonConst;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -28,20 +28,22 @@ public class Application {
         }
 
         LagrangePolynomial lagrangePolynomial = new LagrangePolynomial(dotStorage);
-        NewtonPolynomial newtonPolynomial = new NewtonPolynomial(dotStorage);
+
+        NewtonConst newtonConst = new NewtonConst(dotStorage);
 
         System.out.println("Введите x: ");
         double x = Double.parseDouble(reader.readLine());
 
         double valueByLagrangePolynomial = lagrangePolynomial.countValue(x);
-        double valueByNewtonPolynomial = newtonPolynomial.countValue(x);
+        double valueByNewtonConst = newtonConst.countValue(x);
 
         System.out.println("Value by lagrange polynomial: " + valueByLagrangePolynomial);
-        System.out.println("Value by newton polynomial: " + valueByNewtonPolynomial);
-        newtonPolynomial.printDivDiffs();
+
+        System.out.println("Value by newton const polynomial: " + valueByNewtonConst );
+        newtonConst.printFinDiffs();
 
         Graphic graphic = new Graphic();
-        graphic.setData(dotStorage, List.of(lagrangePolynomial, newtonPolynomial));
+        graphic.setData(dotStorage, List.of(lagrangePolynomial, newtonConst));
         graphic.run();
     }
 

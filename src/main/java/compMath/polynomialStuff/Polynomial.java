@@ -6,5 +6,4 @@ public interface Polynomial {
 
     String getName();
 
-
 }
