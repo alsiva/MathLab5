@@ -34,8 +34,8 @@ public class Application {
         System.out.println("Введите x: ");
         double x = Double.parseDouble(reader.readLine());
 
-        double valueByLagrangePolynomial = lagrangePolynomial.countValue(x);
-        double valueByNewtonConst = newtonConst.countValue(x);
+        double valueByLagrangePolynomial = lagrangePolynomial.countValue(x, false);
+        double valueByNewtonConst = newtonConst.countValue(x, true);
 
         System.out.println("Value by lagrange polynomial: " + valueByLagrangePolynomial);
 

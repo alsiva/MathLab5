@@ -10,7 +10,7 @@ public class LagrangePolynomial implements Polynomial {
         this.dotStorage = dotStorage;
     }
 
-    public double countValue(double x) {
+    public double countValue(double x, boolean print) {
         double value = 0;
         double top, bottom, yi;
 

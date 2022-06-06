@@ -32,18 +32,18 @@ public class NewtonConst implements Polynomial{
 
 
     @Override
-    public double countValue(double x) {
-        double middle = (dotStorage.getDot(dotStorage.size()-1).getX() - dotStorage.getDot(0).getX());
+    public double countValue(double x, boolean print) {
+        double middle = (dotStorage.getDot(dotStorage.size() / 2).getX());
         if (x < middle) {
-            return interpolateForward(x);
+            return interpolateForward(x, print);
         }
-        return interpolateBackward(x);
+        return interpolateBackward(x, print);
     }
 
-    private double interpolateForward(double x) {
+    private double interpolateForward(double x, boolean print) {
         int i;//Это та строка с который мы будем брать конечные разности
         for (i = 0; i < dotStorage.size()-1; i++) {
-            if (dotStorage.getDot(i).getX() < x && x < dotStorage.getDot(i+1).getX()) break;
+            if (dotStorage.getDot(i).getX() <= x && x <= dotStorage.getDot(i+1).getX()) break;
         }
 
         double result = dotStorage.getDot(i).getY();
@@ -51,8 +51,10 @@ public class NewtonConst implements Polynomial{
         double t = tMult;
         double fact = 1;
         for (int k = 1; k < finDiffs.length; k++){
+
+            if (finDiffs[i][k] != 0 && print) System.out.println( "[" + i + "]" + "[" + k + "] " + finDiffs[i][k]);
+
             fact *= k;
-            double value = (tMult *  finDiffs[i][k]) / fact;
             result += (tMult *  finDiffs[i][k]) / fact;
             tMult *= (t - k);
         }
@@ -60,18 +62,21 @@ public class NewtonConst implements Polynomial{
         return result;
     }
 
-    private double interpolateBackward(double x) {
+    private double interpolateBackward(double x, boolean print) {
         int i;
+
         for (i = 0; i < dotStorage.size()-1; i++) {
-            if (dotStorage.getDot(i).getX() < x && x < dotStorage.getDot(i+1).getX()) break;
+            if (dotStorage.getDot(i).getX() <= x && x <= dotStorage.getDot(i+1).getX()) break;
         }
+
         int n = i+1;
 
         double result = dotStorage.getDot(n).getY();
         double tMult = (x - dotStorage.getDot(n).getX()) / (dotStorage.getDot(1).getX() - dotStorage.getDot(0).getX());
         double t = tMult;
         double fact = 1;
-        for (int k = 1; k < finDiffs.length; k++) {
+        for (int k = 1; k <= n; k++) {
+            if (finDiffs[n-k][k] != 0 && print) System.out.println("["+(n-k)+"]" + "[" + k  + "] " +  finDiffs[n-k][k]);
             fact *= k;
             result += (tMult * finDiffs[n-k][k]) / fact;
             tMult *= (t + k);
